@@ -1,0 +1,24 @@
+html,body
+{
+	background: #FFFFCC;
+	margin: 0px 0px 0px 0px;	
+	overflow:hidden;
+	height: 100%;
+}
+
+
+#gora
+{
+	background-color: #FFFFCC;
+	height: 100px;
+	width: 100%;
+	
+}
+
+#tresc
+{
+	overflow-y: scroll;
+	height: 250px;	
+	background: #CCCC99;
+	border: 5px solod;
+}
