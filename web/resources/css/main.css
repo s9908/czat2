@@ -10,9 +10,16 @@ html,body
 #gora
 {
 	background-color: #FFFFCC;
-	height: 100px;
+	//height: 100px;
 	width: 100%;
 	
+}
+
+#login_info
+{
+	background-color: #FFFFCC;
+	font-size: 10px;	
+	font-family: verdana;
 }
 
 #tresc

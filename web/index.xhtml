@@ -6,6 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" >
+	
 
  <h:head>  
 	<title>Czat2</title>
@@ -14,17 +15,34 @@
       
 <h:body>  
 	<h:form>
-
+			<p:messages closable="true" showDetail="true" showSummary="true" id='blad1'/>
+			
+			<p:dialog header="Zaloguj się!" widgetVar="dlg_login" minHeight="40">
+    			Twój nick: <p:inputText value='#{login.uzytkownik_pole}' /> <br/>
+    			
+    			<p:commandButton value="Zaloguj" actionListener="#{login.zaloguj}" ajax="false" icon="ui-icon-check"/>
+			</p:dialog>
+	</h:form>
+	
+	
+	<h:form>
 			<div id='gora'>
 				<font size='7'>Czat 2</font>
 			</div>		
-		
-			<div id='tresc'>
-				<h:outputText id="txt_tresc" value="#{state.txt_tresc}" escape="false"/>
+			<div id='login_info'>
+				Jesteś zalogowany jako: <h:outputText id='uzytkownik_txt' value='#{login.uzytkownik_txt}' />
+				<p:commandButton rendered="#{login.zalogowany==false}" value="Zaloguj się" type="button" onclick="PF('dlg_login').show();" />
+				<p:commandButton rendered="#{login.zalogowany==true}" value="Wyloguj się" actionListener="#{login.wyloguj}" ajax="false" />
 			</div>
-			<p:editor id="editor" widgetVar="editorWidget" value="#{state.editor}" width="600" height="100" controls="bold italic underline color"/>
-			<p:commandButton value="Wyślij" update="txt_tresc" actionListener="#{state.wyslij}" oncomplete="PF('editorWidget').clear(); przewin();" icon="ui-icon-comment" />
-			<p:poll interval="1" update="txt_tresc" oncomplete="przewin();" />
+			
+			<h:panelGroup id='panel_tresc' rendered="#{login.zalogowany==true}">
+				<div id='tresc'>
+					<h:outputText id="txt_tresc" value="#{state.txt_tresc}" escape="false"/>
+				</div>
+				<p:editor id="editor" widgetVar="editorWidget" value="#{state.editor}" width="600" height="100" controls="bold italic underline color"/>
+				<p:commandButton value="Wyślij" update="txt_tresc" actionListener="#{state.wyslij}" oncomplete="PF('editorWidget').clear(); przewin();" icon="ui-icon-comment" />
+				<p:poll interval="1" update="txt_tresc" oncomplete="przewin();" />
+			</h:panelGroup>
 	</h:form>
      
     <script language='JavaScript'>
