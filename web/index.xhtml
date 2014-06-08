@@ -22,11 +22,22 @@
 			<div id='tresc'>
 				<h:outputText id="txt_tresc" value="#{state.txt_tresc}" escape="false"/>
 			</div>
-		
-
+			<p:editor id="editor" widgetVar="editorWidget" value="#{state.editor}" width="600" height="100" controls="bold italic underline color"/>
+			<p:commandButton value="Wyślij" update="txt_tresc" actionListener="#{state.wyslij}" oncomplete="PF('editorWidget').clear(); przewin();" icon="ui-icon-comment" />
+			<p:poll interval="1" update="txt_tresc" oncomplete="przewin();" />
 	</h:form>
-          
+     
+    <script language='JavaScript'>
+    	function przewin()
+    	{
+			document.getElementById('tresc').scrollTop = document.getElementById('tresc').scrollHeight;
+    	}
+    	przewin();
+	</script>
+     
 </h:body>  
 
 
+
 </html>
+
